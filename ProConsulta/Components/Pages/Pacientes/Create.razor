@@ -1,0 +1,54 @@
+﻿@page "/pacientes/create"
+@inherits CreatePacientePage
+
+<MudText Typo="Typo.h3">Cadastro de Pacientes</MudText>
+
+<MudPaper Class="pa-8 mt-4">
+    
+    <EditForm Model="@InputModel" OnValidSubmit="OnValidSubmitAsync">
+        
+        <DataAnnotationsValidator />
+        
+        <MudTextField Label="Nome" 
+                      Variant="Variant.Outlined" 
+                      HelperText="Campo Obrigatório" 
+                      @bind-Value="InputModel.Nome"
+                      For="@(() => InputModel.Nome)"/>
+        
+        <MudTextField Label="Documento" 
+                      Variant="Variant.Outlined" 
+                      HelperText="Campo Obrigatório" 
+                      @bind-Value="InputModel.Documento"
+                      For="@(() => InputModel.Documento)"
+                      Mask="@(new PatternMask("000.000.000-00"))"/>
+        
+        <MudTextField Label="E-mail" 
+                      Variant="Variant.Outlined" 
+                      HelperText="Campo Obrigatório" 
+                      @bind-Value="InputModel.Email"
+                      For="@(() => InputModel.Email)"
+                      />
+        
+        <MudTextField Label="Celular" 
+                      Variant="Variant.Outlined" 
+                      HelperText="Campo Obrigatório" 
+                      @bind-Value="InputModel.Celular"
+                      For="@(() => InputModel.Celular)"
+                      Mask="@(new PatternMask("(00) 0 0000-0000"))"/>
+
+        <MudDatePicker Label="Data de Nascimento"
+                   Editable="false"
+                   @bind-Date="DataNascimento"
+                   Variant="Variant.Outlined"
+                   Placeholder="Data de Nascimento"/>
+        
+        <MudDivider Class="m-4"/>
+        
+        <MudButton Variant="Variant.Filled" 
+                   StartIcon="@Icons.Material.Filled.Save" 
+                   Color="Color.Info" 
+                   Size="Size.Large" 
+                   ButtonType="ButtonType.Submit">Salvar</MudButton>
+
+    </EditForm>
+</MudPaper>
