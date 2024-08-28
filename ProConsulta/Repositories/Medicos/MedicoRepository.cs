@@ -15,19 +15,36 @@ public class MedicoRepository: IMedicoRepository
 
     public async Task AddAsync(Medico medico)
     {
-        _dbContext.Medicos.Add(medico);
-        await _dbContext.SaveChangesAsync();
+        try
+        {
+            _dbContext.Medicos.Add(medico);
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            _dbContext.ChangeTracker.Clear();
+            throw;
+        }
     }
 
     public async Task UpdateAsync(Medico medico)
     {
-        _dbContext.Medicos.Update(medico);
-        await _dbContext.SaveChangesAsync();
+        try
+        {
+            _dbContext.Medicos.Update(medico);
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (Exception e)
+        {
+            _dbContext.ChangeTracker.Clear();
+            throw;
+        }
     }
 
     public async Task<List<Medico>> GetAllAsync()
     {
         return await _dbContext.Medicos
+            .Include(m => m.Especialidade)
             .AsNoTracking() //não mapeia os objetos para alteração, somente listagem
             .ToListAsync();
     }

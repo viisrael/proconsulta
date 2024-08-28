@@ -28,6 +28,7 @@ public class UpdatePacientePage : ComponentBase
     private Paciente? CurrentPaciente { get; set; }
 
     public DateTime? DataNascimento { get; set; } = DateTime.Today;
+    public DateTime? MaxDate { get; set; } = DateTime.Today;
 
     protected override async Task OnInitializedAsync()
     {
