@@ -27,12 +27,14 @@
             <CellTemplate>
                 <MudStack Row>
                     <MudFab Size="Size.Small" 
+                            hidden="@HideButtons"
                             Label="Editar" 
                             @onclick="@(()=> GoToUpdate(context.Item.Id))" 
                             StartIcon="@Icons.Material.Filled.Edit"
                             Color="Color.Success"/>
 
                     <MudFab Size="Size.Small"
+                            hidden="@HideButtons"
                             Label="Excluir"
                             @onclick="@(()=> DeletePaciente(context.Item))"
                             StartIcon="@Icons.Material.Filled.Delete"

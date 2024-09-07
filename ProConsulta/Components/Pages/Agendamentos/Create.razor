@@ -1,5 +1,7 @@
 ﻿@page "/agendamentos/create"
+@using Microsoft.AspNetCore.Authorization
 @inherits CreateAgendamentoPage
+@attribute [Authorize(Roles = "Atendente")]
 
 <PageTitle>Agendamentos</PageTitle>
 
