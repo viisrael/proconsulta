@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ProConsulta.Models;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace ProConsulta.Components.Pages.Medicos;
 public class IndexMedicoPage : ComponentBase
@@ -22,10 +23,17 @@ public class IndexMedicoPage : ComponentBase
     public NavigationManager NavigationManager { get; set; } = null!;
 
     public List<Medico> Medicos { get; set; } = new List<Medico>();
+    public bool HideButtons { get; set; } = false;
 
+    [CascadingParameter]
+    private Task<AuthenticationState> AuthenticationState { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
+        var auth = await AuthenticationState;
+
+        HideButtons = !auth.User.IsInRole("Atendente");
+
         Medicos = await repository.GetAllAsync();
     }
 

@@ -42,7 +42,7 @@ public class DbInitializer
                 EmailConfirmed = true,
                 UserName = "atendente",
                 NormalizedEmail = "ATENDENTE@EMAIL.COM",
-                NormalizedUserName = "ATENDENTE",
+                NormalizedUserName = "ATENDENTE@EMAIL.COM",
                 PasswordHash = hasher.HashPassword(null, "s3nh4")
             }
         
